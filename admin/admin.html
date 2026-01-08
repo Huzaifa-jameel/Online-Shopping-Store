@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Dynamic Clothing</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Dashboard Container -->
+    <div id="main-app" class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Ultr<span class="highlight">as</span></h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-target="dashboard">
+                        <i class="fas fa-home"></i> <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-target="products">
+                        <i class="fas fa-tshirt"></i> <span>Products</span>
+                    </li>
+                    <li class="nav-item" data-target="orders">
+                        <i class="fas fa-shopping-bag"></i> <span>Orders</span>
+                    </li>
+                    <li class="nav-item" data-target="users">
+                        <i class="fas fa-users"></i> <span>Users</span>
+                    </li>
+                    <li class="nav-item" data-target="categories">
+                        <i class="fas fa-tags"></i> <span>Categories</span>
+                    </li>
+                    <li class="nav-item" data-target="inventory">
+                        <i class="fas fa-boxes"></i> <span>Inventory</span>
+                    </li>
+
+                    <!-- Special Sections -->
+                    <li class="si-header">Site Management</li>
+                    <li class="nav-item" data-target="featured">
+                        <i class="fas fa-star"></i> <span>Featured</span>
+                    </li>
+                    <li class="nav-item" data-target="sales">
+                        <i class="fas fa-percent"></i> <span>Sales</span>
+                    </li>
+                     <li class="nav-item" data-target="banners">
+                        <i class="fas fa-image"></i> <span>Banners</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <li class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </li>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                    <h1 id="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User" alt="Admin">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic Content Area -->
+            <div id="content-area" class="content-area">
+                <!-- Dashboard Section (Default) -->
+                <div id="dashboard-view" class="view-section active">
+                    <!-- Top Stats -->
+                    <div class="stats-grid" id="stats-grid"></div>
+                    
+                    <div class="dashboard-widgets">
+                        <!-- Left: Recent Orders -->
+                        <div class="widget recent-activity-section">
+                            <h3>Recent Orders</h3>
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Customer</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-orders-table"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Right: Top Selling & Low Stock -->
+                        <div class="widget-column">
+                             <div class="widget">
+                                <h3>Top Selling Products</h3>
+                                <div id="top-selling-list" class="simple-list"></div>
+                            </div>
+                            <div class="widget">
+                                <h3>Low Stock Alerts</h3>
+                                <div id="low-stock-list" class="simple-list alert-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Management Section -->
+                <div id="products-view" class="view-section">
+                    <div class="section-header-actions">
+                        <button class="btn-primary" id="add-product-btn"><i class="fas fa-plus"></i> Add Product</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Orders Management Section -->
+                <div id="orders-view" class="view-section">
+                     <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Users Management Section -->
+                <div id="users-view" class="view-section">
+                     <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Inventory Section -->
+                 <div id="inventory-view" class="view-section">
+                    <div class="filter-bar">
+                        <select id="inv-filter-status">
+                            <option value="all">All Stock Status</option>
+                            <option value="low">Low Stock (< 10)</option>
+                            <option value="out">Out of Stock (0)</option>
+                        </select>
+                         <select id="inv-filter-category">
+                            <option value="all">All Categories</option>
+                            <!-- Injected via JS -->
+                        </select>
+                        <select id="inv-filter-brand">
+                            <option value="all">All Brands</option>
+                            <!-- Injected via JS -->
+                        </select>
+                    </div>
+                     <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventory-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                 <!-- Search Section -->
+                 <div id="search_product-view" class="view-section">
+                    <div class="search-container">
+                         <input type="text" id="global-search" placeholder="Search products, orders, or users...">
+                    </div>
+                    <div id="search-results" class="search-results-grid"></div>
+                </div>
+                
+                <!-- Placeholders for other sections -->
+                <!-- Featured Section -->
+                <div id="featured-view" class="view-section">
+                     <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="featured-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Sales Section -->
+                <div id="sales-view" class="view-section">
+                     <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Discount</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sales-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="banners-view" class="view-section"><h3>Banners Management</h3></div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- PRODUCT MODAL -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content modal-lg">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Add/Edit Product</h2>
+            <form id="product-form">
+                <input type="hidden" id="edit-product-id">
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Name</label>
+                        <input type="text" id="prod-name" required>
+                    </div>
+                    <div class="form-group half">
+                         <label>Brand</label>
+                         <select id="prod-brand" required>
+                            <option value="">Select Brand</option>
+                            <option value="Nike">Nike</option>
+                            <option value="Adidas">Adidas</option>
+                            <option value="Puma">Puma</option>
+                        </select>
+                    </div>
+                </div>
+                
+                 <div class="form-row">
+                    <div class="form-group half">
+                        <label>Category (Type)</label>
+                        <select id="prod-category" required>
+                            <option value="">Select Category</option>
+                            <option value="Shoes">Shoes</option>
+                            <option value="T-Shirts">T-Shirts</option>
+                            <option value="Pants">Pants</option>
+                            <option value="Jackets">Jackets</option>
+                        </select>
+                    </div>
+                   <div class="form-group half">
+                        <label>Main Image</label>
+                        <input type="file" id="prod-image-file" accept="image/*">
+                        <input type="text" id="prod-image" placeholder="Or Image URL" value="/uploads/products/main/default.jpg" style="margin-top:5px; font-size:0.8rem;">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>Price</label>
+                        <input type="number" id="prod-price" step="0.01" required>
+                    </div>
+                    <div class="form-group half">
+                        <label>Discount Price</label>
+                        <input type="number" id="prod-discount" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                     <div class="form-group half">
+                        <label>Stock Quantity</label>
+                        <input type="number" id="prod-qty" required>
+                    </div>
+                     <div class="form-group half">
+                         <div class="checkbox-group">
+                             <label><input type="checkbox" id="prod-featured"> Featured</label>
+                             <label><input type="checkbox" id="prod-onsale"> On Sale</label>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Colors (comma separated)</label>
+                    <input type="text" id="prod-colors" placeholder="red, blue, black">
+                </div>
+                <div class="form-group">
+                    <label>Sizes</label>
+                    <div class="checkbox-group" id="size-checkboxes">
+                        <label><input type="checkbox" value="S" class="size-chk"> S</label>
+                        <label><input type="checkbox" value="M" class="size-chk"> M</label>
+                        <label><input type="checkbox" value="L" class="size-chk"> L</label>
+                        <label><input type="checkbox" value="XL" class="size-chk"> XL</label>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="prod-desc" rows="3"></textarea>
+                </div>
+                
+                 <div class="form-group">
+                    <label>Gallery Images (Optional)</label>
+                    <input type="file" id="prod-gallery-file" multiple accept="image/*">
+                </div>
+
+                <button type="submit" class="btn-primary">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ORDER DETAILS MODAL -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-order-modal">&times;</span>
+            <h2>Order Details</h2>
+            <div id="order-details-content">
+                <!-- Injected via JS -->
+            </div>
+            <div class="order-actions">
+                <label>Update Status:</label>
+                <select id="order-status-update">
+                     <option value="Pending">Pending</option>
+                     <option value="Packed">Packed</option>
+                     <option value="Shipped">Shipped</option>
+                     <option value="Delivered">Delivered</option>
+                     <option value="Cancelled">Cancelled</option>
+                </select>
+                <button id="save-order-status" class="btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- End main-app -->
+
+    <script src="script.js"></script>
+</body>
+</html>
