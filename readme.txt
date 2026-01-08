@@ -1,66 +1,96 @@
-It is a free HTML CSS template by TemplatesJungle.com
-You can use this template as a starter template and start building as you require.
+# Online Shopping Store
 
-The code is consistent and can be easily maintained as we have followed a good coding standards. We want everyone to easily understand it and modify it according to their requirement. As the main goal of providing these templates is to give you something to work on before even starting.
+An example e-commerce website built with HTML, CSS, JavaScript and PHP. This repository contains the frontend pages (shop, product, blog, cart, wishlist, etc.), styles, images, and a PHP backend for server-side features plus a SQL dump to create the project database.
 
+Live demo: (none included) — to run locally follow the setup below.
 
-FREE FOR BOTH PERSONAL AND COMMERCIAL USE
+## Key features
+- Product listing and single product pages
+- Shopping cart and checkout flow (thank-you page)
+- Wishlist and blog pages
+- User login page and basic PHP backend for sessions/auth (see `php/` folder)
+- Admin area (in `admin/`) for managing the store (files included)
+- SQL file to create the database schema and sample data (`database.sql`)
+- Includes styling (`style.css`, `css/`), scripts (`js/`), icons (`icomoon/`) and images (`images/`)
 
-This HTML Template is provided by TemplatesJungle.com and is free to use in both personal and commercial projects as long as you don't remove our credit link in the footer.
+## Languages and composition
+- HTML: main markup for pages (index.html, shop.html, single-product.html, etc.)
+- CSS: styling and layout (style.css and `css/`)
+- JavaScript: client-side interactions (`js/`)
+- PHP: server-side logic located in `php/`
+- Database: MySQL schema and sample data (`database.sql`)
 
-However, you can remove the credit link by paying for PRO version of the template which also includes additional pages.
+## Repository layout (high-level)
+- index.html — Home page
+- shop.html — Product listing
+- single-product.html — Product detail page
+- cart.html, wishlist.html, checkout/thank-you page
+- login.html — User login page
+- admin/ — Admin pages (manage products/orders/users)
+- php/ — PHP backend (database connection, session handling, server endpoints)
+- css/ and style.css — Styles
+- js/ — Client scripts
+- images/ — Image assets
+- database.sql — MySQL dump to create schema & sample data
+- xampp_import_guide.md — Quick guide to import DB using XAMPP
 
+## Requirements
+- PHP (recommended PHP 7.4+)
+- MySQL / MariaDB
+- Apache (or any PHP-capable web server)
+- XAMPP (recommended for local development on Windows) or LAMP/MAMP
 
-RIGHTS
+## Quick local setup (XAMPP)
+1. Install XAMPP (or MAMP/LAMP) and start Apache + MySQL.
+2. Copy the repository into your webroot:
+   - XAMPP (Windows): copy files to C:\xampp\htdocs\Online-Shopping-Store
+   - MAMP (macOS): copy files to /Applications/MAMP/htdocs/Online-Shopping-Store
+3. Create the database:
+   - Using phpMyAdmin: open http://localhost/phpmyadmin, create a database (e.g., `online_store`) and import `database.sql`.
+   - Or command line:
+     - Open terminal / cmd and run:
+       mysql -u root -p
+       CREATE DATABASE online_store;
+       USE online_store;
+       SOURCE path/to/database.sql;
+4. Configure database credentials:
+   - Open the PHP config/connection file in `php/`. Common filenames include `config.php`, `db.php`, `connection.php` — search for DB host/user/password if unsure.
+   - Update DB_HOST (usually `localhost`), DB_NAME (`online_store` or your chosen name), DB_USER (`root` for default XAMPP), and DB_PASS (empty for default XAMPP).
+5. Access the site:
+   - Visit http://localhost/Online-Shopping-Store/ (or the path where you placed the files).
+6. Admin / login:
+   - Use the credentials present in the database sample (check `database.sql` for user entries) or create an admin user directly in phpMyAdmin.
 
-You are allowed to use it in your personal projects and commercial projects.
+If you prefer, follow the included `xampp_import_guide.md` for step-by-step screenshots and extra tips.
 
-You can modify and sell it to your clients.
+## Common adjustments & troubleshooting
+- Blank pages or PHP errors: ensure Apache serves PHP files and error display is enabled while developing. Check Apache error logs.
+- DB connection errors: confirm credentials and database name, ensure MySQL is running.
+- Pretty URLs / routing: this project is file-based; if you add rewriting or a framework, configure `.htaccess` as needed.
+- Missing images/CSS/JS: ensure asset paths are preserved and `images/`, `css/`, `js/` directories are in the webroot.
 
+## Recommended improvements
+- Add environment configuration (e.g., `.env`) and a single `php/config.php` that reads it.
+- Secure user authentication (password hashing, prepared statements).
+- Move inline SQL to migrations or seeders for repeatable setup.
+- Add automated tests for PHP endpoints (PHPUnit) and CI for linting.
+- Add a LICENSE file (MIT recommended if you want an open source license).
+- Provide a demo or screenshots in the README.
 
-PROHIBITIONS
+## Contributing
+Contributions are welcome! To contribute:
+1. Fork the repo
+2. Create a feature branch: `git checkout -b feat/awesome`
+3. Make changes and commit with clear messages
+4. Open a pull request describing your changes
 
-You cannot remove the credit link which links back to templatesjungle.com.
+Please open issues for bugs or feature requests.
 
-You are not permitted to resell or redistribute (paid or free) as it is. 
+## Adding this README to the repo
+You can add this file as `README.md` to the repository root. If you'd like, I can create a PR that adds this README and optionally a LICENSE file — tell me if you want me to proceed.
 
-You cannot use it to build premium templates, themes or any other goods to be sold on marketplaces.
+## Contact
+Author: Huzaifa-jameel (repository owner)
 
-If you want to share the free resource in your blog, you must point it to original TemplatesJungle.com resource page. 
-
-You cannot host the download file in your website.
-
-
-SUPPORT
-
-You can contact us to report any bugs and errors in the template. We will try and fix them immediately although it's a free resource.
-
-Feel free to let us know about what you want to see in the future downloads. We will definitely give it a thought while creating our next freebie.
-
-
-CREDITS & REFERENCES
-
-https://getbootstrap.com/
-
-Stock Photos
-https://unsplash.com/
-https://www.freepik.com/
-https://www.pexels.com/
-
-Fonts
-Google fonts
-https://fonts.google.com/
-
-Icons
-https://icomoon.io/
-
-JQuery Plugins
-
-Swiper Slider - https://swiperjs.com/
-Slick Slider - https://kenwheeler.github.io/slick/
-Chocolat.js – a Free Lightbox Plugin -http://chocolat.insipi.de/
-Magnific Lightbox - https://github.com/dimsemenov/Magnific-Popup
-
-Thanks for downloading from TemplatesJungle.com !
-
-
+---
+Thank you — tell me if you want the README tweaked (shorter, more technical, include screenshots, badges, or specific admin credentials) and I will update it.
